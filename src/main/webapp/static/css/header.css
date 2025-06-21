@@ -1,0 +1,325 @@
+@charset "UTF-8";
+
+
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: #fff; /* Màu nền */
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Tạo bóng */
+	z-index: 1000; /* Đảm bảo header hiển thị trên các phần tử khác */
+}
+
+/* Navbar */
+.navbar {
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+	background: #fff;
+}
+
+.navbar-brand img {
+	height: 50px;
+	transition: transform 0.3s;
+}
+
+.navbar-brand img:hover {
+	transform: scale(1.1);
+}
+
+.nav-link {
+	font-weight: 600;
+	text-transform: uppercase;
+	color: #333 !important;
+}
+
+.nav-link:hover {
+	color: #ff6f61 !important;
+}
+
+/* Thêm vào phần custom styles */
+.dropdown-menu {
+	border: none;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+	margin-top: 10px;
+}
+
+.dropdown-item {
+	font-weight: 500;
+	transition: all 0.3s;
+}
+
+.dropdown-item:hover {
+	background: #ff6f61;
+	color: #fff !important;
+}
+
+.dropdown-divider {
+	opacity: 0.1;
+}
+
+/* Responsive cho mobile */
+@media ( max-width : 991px) {
+	.dropdown-menu {
+		border: none;
+		box-shadow: none;
+		margin-top: 0;
+		background: rgba(0, 0, 0, 0.03);
+	}
+	.dropdown-item {
+		padding-left: 30px;
+	}
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Khoảng cách giữa các phần tử */
+}
+
+.cart-icon {
+    display: flex;
+    align-items: center;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.cart-icon:hover {
+    color: #ff6f61;
+}
+
+.user-dropdown {
+    position: relative;
+}
+
+.user-actions .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    color: #0080ff;
+    text-decoration: none;
+    padding: 5px;
+    transition: color 0.3s;
+}
+
+.user-actions .dropdown-toggle:hover {
+    color: #ff6f61;
+}
+
+.user-actions .dropdown-menu {
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    min-width: 180px;
+    margin-top: 5px;
+}
+
+.user-actions .dropdown-item {
+    font-weight: 500;
+    padding: 8px 15px;
+    transition: all 0.3s;
+}
+
+.user-actions .dropdown-item:hover {
+    background: #ff6f61;
+    color: #ff6f61 !important;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .user-actions {
+        gap: 10px;
+        padding: 10px 0;
+    }
+    
+    .user-actions .dropdown-menu {
+        box-shadow: none;
+        width: 100%;
+    }
+}
+
+#loginModal {
+    display: none; /* Ẩn modal mặc định */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Nền mờ */
+    justify-content: center;
+    align-items: center;
+}
+
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<style type="text/css">
+<%@ include file="static/css/header.css" %>
+</style>
+
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-light sticky-top ">
+			<div class="container">
+				<a class="navbar-brand" href="trangchu"> <img
+					src="https://via.placeholder.com/150x50?text=Logo" alt="Logo">
+				</a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarNav"
+					aria-controls="navbarNav" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item"><a class="nav-link" href="trangchu">Trang Chủ</a></li>
+
+						<!-- Dropdown Sản Phẩm -->
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" role="button"
+							data-bs-toggle="dropdown" aria-expanded="false"> Sản Phẩm </a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/danhmuc?category=112">Áo</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/danhmuc?category=114">Quần</a></li>
+								<li><a class="dropdown-item" href="${pageContext.request.contextPath}/danhmuc?category=120">Váy</a></li>
+								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="#">Tất cả sản phẩm</a></li>
+							</ul></li>
+
+						<!-- Dropdown Khuyến Mãi -->
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" role="button"
+							data-bs-toggle="dropdown" aria-expanded="false"> Khuyến Mãi </a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="#">Deal sốc</a></li>
+								<li><a class="dropdown-item" href="#">Combo giảm giá</a></li>
+								<li><a class="dropdown-item" href="#">Flash sale</a></li>
+							</ul></li>
+
+						<li class="nav-item"><a class="nav-link" href="lienhe">Liên Hệ</a></li>
+					</ul>
+					<form class="d-flex me-3">
+						<input class="form-control me-2" type="search"
+							placeholder="Tìm kiếm sản phẩm..." aria-label="Search">
+						<button class="btn btn-outline-success" type="submit">
+							<i class="fas fa-search"></i>
+						</button>
+					</form>
+					<div class="user-actions">
+					    <a href="giohang" class="me-3"><i class="fas fa-shopping-cart fa-lg"></i></a>
+					    <div class="dropdown">
+					        <a class="dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+					            <i class="fas fa-user fa-lg"></i>
+					        </a>
+					        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+					        	<li><a href="#" id="openLoginModal" class="dropdown-item">Đăng Nhập</a></li>
+								<!-- Modal -->
+								<div id="loginModal" class="login">
+								    <div class="login-content">
+								        <span class="close" onclick="closeModal()">×</span>
+								        <!-- Phần còn lại của modal -->
+								    </div>
+								</div>
+					            <li><a class="dropdown-item" href="#">Đăng Ký</a></li>
+					            <li><hr class="dropdown-divider"></li>
+					            <li><a class="dropdown-item" href="#">Quên mật khẩu?</a></li>
+					        </ul>
+					    </div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		
+			<!-- Modal đăng nhập -->
+	<div id="loginModal" class="login">
+		<div class="login-content">
+			<span class="close" onclick="closeModal()">&times;</span>
+			<div class="login-body">
+				<div class="left">
+					<img
+						src="https://th.bing.com/th/id/OIP.v2W7zwX9LyE-MK7cQ2q_xgHaNL?w=750&h=1334&rs=1&pid=ImgDetMain"
+						alt="Login Image">
+				</div>
+				<div class="right">
+					<h2>Đăng nhập</h2>
+					<p id="errorMessage"
+						style="color: red; font-size: 17px; display: none;"></p>
+					<form id="loginForm" onsubmit="login(event)">
+						<input class="infor" type="text" name="username"
+							autocomplete="off" placeholder="Tài khoản" required> <input
+							class="infor" type="password" name="password" autocomplete="off"
+							placeholder="Mật khẩu" required>
+						<div class="form-luumk">
+							<label><input type="checkbox" name="luumk"> Lưu
+								mật khẩu</label>
+						</div>
+						<button type="submit" class="btn-dangnhap">Đăng nhập</button>
+					</form>
+					<button id="openRegisterFromLogin" class="btn-dangky">Đăng
+						ký</button>
+					<button id="openChangePasswordModal" class="btn-doimk">Đổi
+						mật khẩu</button>
+					<div class="g-signin2" data-onsuccess="onSignIn"
+						style="margin-top: 20px;">
+						<button class="btn-google"
+							style="display: flex; align-items: center; background-color: #4285F4; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-size: 16px; cursor: pointer;">
+							<i class="fab fa-google" style="margin-right: 10px;"></i> <a
+								href="https://accounts.google.com/o/oauth2/v2/auth?scope=email profile openid&redirect_uri=http://localhost:8080/BTFOMain/dangnhap&response_type=code&client_id=424217027014-ki3n2f8ufhrmigar1e8hmtga8gt80cd6.apps.googleusercontent.com&approval_prompt=force"
+								style="text-decoration: none; color: white;"> Đăng nhập bằng
+								Google </a>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</header>
+	
+	<script type="text/javascript">
+	
+	$(document).ready(function () {
+	    $("#openLoginModal").on("click", function(event) {
+	        event.preventDefault();
+	        $("#loginModal").css("display", "flex");
+	    });
+
+	    // Xử lý form đăng nhập (giữ nguyên)
+	    $("#loginForm").on("submit", function(event) {
+	        event.preventDefault();
+	        var formData = {
+	            username: $("input[name='username']").val(),
+	            password: $("input[name='password']").val()
+	        };
+	        $.ajax({
+	            type: "POST",
+	            url: "dangnhap",
+	            data: formData,
+	            dataType: "json",
+	            success: function(response) {
+	                if (response.status === "success") {
+	                    if (response.role === "1") {
+	                        window.location.href = response.redirect;
+	                    } else {
+	                        location.reload();
+	                    }
+	                } else {
+	                    $("#errorMessage").text(response.message).show();
+	                }
+	            },
+	            error: function() {
+	                $("#errorMessage").text("Đã xảy ra lỗi. Vui lòng thử lại.").show();
+	            }
+	        });
+	    });
+	});
+
+	function closeModal() {
+	    $("#loginModal").css("display", "none");
+	}
+	 
+	
+	</script>
+ </html>

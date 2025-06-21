@@ -1,0 +1,12 @@
+INSERT INTO `content`(`id`, `img_content`, `create_at`, `description`, `link_content`) VALUES 
+('1', 'assets//img_content//anh1.png', '07/09/2024', 'Tip Phối Đồ',  'https://luvinus.com/cam-nang-meo-hay/cach-phoi-do-nu-don-gian/'),
+('2', 'assets//img_content//anh2.png', '01/08/2012', 'Outfit là gì? Gợi 30+ Outfit Cực Chất Cho Thời Trang 2023', 'https://luvinus.com/tin-tuc-va-xu-huong/outfit-la-gi/'),
+('3', 'assets//img_content//anh3.png', '09/08/2004', '50+ Cách Phối Đồ Với Quần Tây Ống Rộng Thời Trang Hiện Đại', 'https://luvinus.com/cam-nang-meo-hay/phoi-do-voi-quan-tay-ong-rong/'),
+('4', 'assets//img_content//anh4.png', '25/03/2014', '25+ Cách Phối Đồ Và Top 10 Shop Thời Trang Big Size Nữ “Hot” Nhất', 'https://luvinus.com/tin-tuc-va-xu-huong/thoi-trang-nu-big-size/'),
+('5', 'assets//img_content//anh5.png', '12/11/1994', '15+ Cách Chụp Ảnh Với Người Yêu Trước Gương Hút Mắt Người Xem', 'https://luvinus.com/cach-tao-dang/chup-anh-voi-nguoi-yeu-truoc-guong/'),
+('6', 'assets//img_content//anh6.png', '06/12/2014', '20+ ý tưởng Mix Đồ Với Áo Hai Dây “Chuẩn” Như Fashionita', 'https://luvinus.com/cam-nang-meo-hay/cach-phoi-do-voi-ao-hai-day/'),
+('7', 'assets//img_content//anh7.png', '30/10/2038', 'Old Money là gì? Bật mí 30+ tips phối đồ chuẩn style Old Money', 'https://luvinus.com/tin-tuc-va-xu-huong/old-money/'),
+('8', 'assets//img_content//anh8.png', '12/08/2076', '10+ Công thức cắt quần ống rộng giả váy cho người mới siêu dễ', 'https://luvinus.com/cong-thuc-cat-may/cong-thuc-cat-quan-ong-rong-gia-vay/'),
+('9', 'assets//img_content//anh9.png', '06/09/2123', '54+ Cách Tạo Dáng Chụp Ảnh Đứng Nam, Nữ Ngoài Trời Đẹp Nhất',  'https://luvinus.com/cach-tao-dang/cach-tao-dang-chup-anh-dung/'),
+('10', 'assets//img_content//anh10.png', '05/05/2018', '45+ Cách Tạo Dáng Chụp Ảnh Ngồi Quán Cafe “So Deep” Nhất
+', 'https://luvinus.com/cach-tao-dang/cach-tao-dang-chup-anh-ngoi-quan-cafe/')
