@@ -893,12 +893,18 @@
 			    });
 			});
 			
-		
-		 	// Hàm kiểm tra trạng thái đăng nhập
-		   function checkLoginStatus() {
+
+		    
+		    function checkLoginStatus() {
 		        const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 		        updateDropdownMenu(isLoggedIn);
 		        updateCartLink(isLoggedIn);
+		        
+		        // Gắn sự kiện cho modal đăng nhập
+		        $(document).on('click', '.show-login-modal', function(e) {
+		            e.preventDefault();
+		            openModal('loginModal');
+		        });
 		    }
 		
 		
@@ -918,21 +924,44 @@
 			}
 		    
 			// Hàm cập nhật liên kết giỏ hàng
-		    function updateCartLink(isLoggedIn) {
-		    	const cartContainer = $('.user-actions'); 
-		        const cartLink = cartContainer.find('#cartLink');
-		        if (isLoggedIn) {
-		            const userId = localStorage.getItem("userId") || -1;
-		            const contextPath = "${pageContext.request.contextPath}";
-		            
-		            cartLink.html(`
-		            		<a id="cartLink" href="\${contextPath}/giohang?userId=\${userId}" class="me-3">
-					            <i class="fas fa-shopping-cart fa-lg"></i>
-					        </a>
-		            	`);
-		            cartLink.removeClass('show-login-modal');
-		        }
-		    }
+			function updateCartLink(isLoggedIn) {
+			    const cartContainer = $('.user-actions');
+			    
+			    
+			    // Xóa liên kết giỏ hàng hiện tại
+			    cartContainer.find('#cartLink, .show-login-modal').remove();
+			    
+			    if (isLoggedIn) {
+			        const userId = localStorage.getItem("userId") || -1;
+			        const contextPath = "${pageContext.request.contextPath}";
+			        
+			        // Tạo liên kết giỏ hàng mới
+			        const cartLink = $(`
+			            <a id="cartLink" href="\${contextPath}/giohang?userId=\${userId}" class="me-3">
+			                <i class="fas fa-shopping-cart fa-lg"></i>
+			            </a>
+			        `);
+			        
+			        // Chèn vào trước dropdown user
+			        cartLink.insertBefore(cartContainer.find('.dropdown'));
+			    } else {
+			        // Tạo liên kết mở modal đăng nhập
+			        const loginLink = $(`
+			            <a href="#" class="me-3 show-login-modal">
+			                <i class="fas fa-shopping-cart fa-lg"></i>
+			            </a>
+			        `);
+			        
+			        // Chèn vào trước dropdown user
+			        loginLink.insertBefore(cartContainer.find('.dropdown'));
+			        
+			        // Gắn sự kiện mở modal
+			        loginLink.on('click', function(e) {
+			            e.preventDefault();
+			            openModal('loginModal');
+			        });
+			    }
+			}
 
 		    
 		    // Xử lý form đổi mật khẩu
